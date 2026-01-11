@@ -18,13 +18,10 @@ brew upgrade
 echo "🧹 Cleaning up..."
 brew cleanup
 
-echo ""
-echo "▸ TeX Live"
+echo "▸ Claude Code"
 echo "────────────────────────────────────────"
-echo "📦 Updating TeX Live Manager..."
-sudo tlmgr update --self
-echo "📚 Updating all packages..."
-sudo tlmgr update --all
+echo "🤖 Updating Claude Code..."
+claude update
 
 echo ""
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
