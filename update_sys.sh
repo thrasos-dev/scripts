@@ -23,6 +23,23 @@ echo "────────────────────────�
 echo "🤖 Updating Claude Code..."
 claude update
 
+echo "▸ Herdr"
+echo "────────────────────────────────────────"
+# Herdr refuses to update from inside one of its own panes.
+if [ "${HERDR_ENV:-}" = "1" ]; then
+  echo "⏸  Running inside Herdr, which can't update itself from here."
+  echo "   Detach (ctrl+b q) and run \`herdr update\`, or run this again outside Herdr."
+else
+  echo "🐑 Updating Herdr..."
+  herdr update
+fi
+# A plain update leaves the running server, and the panes in it, on the old
+# version; the new one only takes over when the server restarts.
+if herdr status 2>/dev/null | grep -qE '(restart_needed|server_binary_stale): yes'; then
+  echo "⚠️  The Herdr server still runs the old version. Restart it when convenient:"
+  echo "   herdr server stop && herdr   (Claude sessions resume after the restart)"
+fi
+
 echo "▸ Skills"
 echo "────────────────────────────────────────"
 echo "📦 Updating skills..."
